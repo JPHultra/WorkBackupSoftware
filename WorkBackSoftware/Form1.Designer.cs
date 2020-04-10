@@ -31,11 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.LogsTXT = new System.Windows.Forms.TextBox();
+            this.ToTXT = new System.Windows.Forms.TextBox();
+            this.FromTXT = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.SyncBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -57,33 +57,33 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "From:";
             // 
-            // textBox1
+            // LogsTXT
             // 
-            this.textBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.LogsTXT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox1.Location = new System.Drawing.Point(19, 115);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(247, 207);
-            this.textBox1.TabIndex = 2;
+            this.LogsTXT.Location = new System.Drawing.Point(19, 115);
+            this.LogsTXT.Multiline = true;
+            this.LogsTXT.Name = "LogsTXT";
+            this.LogsTXT.Size = new System.Drawing.Size(247, 207);
+            this.LogsTXT.TabIndex = 2;
             // 
-            // textBox2
+            // ToTXT
             // 
-            this.textBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.ToTXT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox2.Location = new System.Drawing.Point(58, 19);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(208, 20);
-            this.textBox2.TabIndex = 3;
+            this.ToTXT.Location = new System.Drawing.Point(58, 19);
+            this.ToTXT.Name = "ToTXT";
+            this.ToTXT.Size = new System.Drawing.Size(208, 20);
+            this.ToTXT.TabIndex = 3;
             // 
-            // textBox3
+            // FromTXT
             // 
-            this.textBox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.FromTXT.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBox3.Location = new System.Drawing.Point(58, 54);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(208, 20);
-            this.textBox3.TabIndex = 4;
+            this.FromTXT.Location = new System.Drawing.Point(58, 54);
+            this.FromTXT.Name = "FromTXT";
+            this.FromTXT.Size = new System.Drawing.Size(208, 20);
+            this.FromTXT.TabIndex = 4;
             // 
             // label3
             // 
@@ -94,27 +94,28 @@
             this.label3.TabIndex = 5;
             this.label3.Text = "Logs";
             // 
-            // button1
+            // SyncBTN
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.SyncBTN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(19, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(247, 58);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Synchronize";
-            this.button1.UseVisualStyleBackColor = true;
+            this.SyncBTN.Location = new System.Drawing.Point(19, 346);
+            this.SyncBTN.Name = "SyncBTN";
+            this.SyncBTN.Size = new System.Drawing.Size(247, 58);
+            this.SyncBTN.TabIndex = 6;
+            this.SyncBTN.Text = "Synchronize";
+            this.SyncBTN.UseVisualStyleBackColor = true;
+            this.SyncBTN.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(285, 423);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SyncBTN);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.FromTXT);
+            this.Controls.Add(this.ToTXT);
+            this.Controls.Add(this.LogsTXT);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -129,11 +130,11 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox LogsTXT;
+        private System.Windows.Forms.TextBox ToTXT;
+        private System.Windows.Forms.TextBox FromTXT;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button SyncBTN;
     }
 }
 
