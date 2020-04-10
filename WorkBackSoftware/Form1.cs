@@ -20,6 +20,13 @@ namespace WorkBackSoftware
             {
                 LoadSettings();
             }
+
+            string[] args = Environment.GetCommandLineArgs();
+
+            if (args[0] == "auto")
+            {
+                autoBackup(args[1], args[2]);
+            }
         }
 
         #region Useless_Events
@@ -52,6 +59,24 @@ namespace WorkBackSoftware
             CopyAll(diSource, diTarget);
 
             LogsTXT.AppendText("\nBackup Finished");
+        }
+
+        private void autoBackup(string to, string from) // Completed
+        {
+            LogsTXT.AppendText("Getting Paths");
+
+            var diSource = new DirectoryInfo(from);
+            var diTarget = new DirectoryInfo(to);
+
+            LogsTXT.AppendText("\nConverting Paths to Directory Info");
+
+            LogsTXT.AppendText("\nStarting Backup ...");
+
+            CopyAll(diSource, diTarget);
+
+            LogsTXT.AppendText("\nBackup Finished");
+
+            Environment.Exit(0);
         }
 
         private void driveFriendlyMethod() // Not Completed|Discontinued
@@ -95,21 +120,29 @@ namespace WorkBackSoftware
 
         public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
-            Directory.CreateDirectory(target.FullName);
-
-            // Copy each file into the new directory.
-            foreach (FileInfo fi in source.GetFiles())
+            try
             {
-                Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
-                fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                Directory.CreateDirectory(target.FullName);
+
+                // Copy each file into the new directory.
+                foreach (FileInfo fi in source.GetFiles())
+                {
+                    Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                    fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                }
+
+                // Copy each subdirectory using recursion.
+                foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+                {
+                    DirectoryInfo nextTargetSubDir =
+                        target.CreateSubdirectory(diSourceSubDir.Name);
+                    CopyAll(diSourceSubDir, nextTargetSubDir);
+                }
             }
-
-            // Copy each subdirectory using recursion.
-            foreach (DirectoryInfo diSourceSubDir in source.GetDirectories())
+            catch (Exception e)
             {
-                DirectoryInfo nextTargetSubDir =
-                    target.CreateSubdirectory(diSourceSubDir.Name);
-                CopyAll(diSourceSubDir, nextTargetSubDir);
+
+                MessageBox.Show("Invalid Path!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -118,8 +151,8 @@ namespace WorkBackSoftware
 
             string[] linhas = new string[2];
 
-            linhas[0] = "to:" + ToTXT.Text;
-            linhas[1] = "from:" + FromTXT.Text;
+            linhas[0] = "to|" + ToTXT.Text;
+            linhas[1] = "from|" + FromTXT.Text;
 
             System.IO.File.WriteAllLines(@"settings.wbs", linhas);
 
@@ -132,7 +165,7 @@ namespace WorkBackSoftware
 
             for (int i = 0; i < lines.Length; i++)
             {
-                string[] SeparateSettings = lines[i].Split(':');
+                string[] SeparateSettings = lines[i].Split('|');
 
                 if (i==0)
                 {
