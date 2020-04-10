@@ -16,6 +16,10 @@ namespace WorkBackSoftware
         public Form1()
         {
             InitializeComponent();
+            if (File.Exists(@"settings.wbs"))
+            {
+                LoadSettings();
+            }
         }
 
         #region Useless_Events
@@ -28,26 +32,26 @@ namespace WorkBackSoftware
         private void button1_Click(object sender, EventArgs e)
         {
 
-            fastCodingMethod();
+            backup();
 
         }
 
-        private void fastCodingMethod() // Completed
+        private void backup() // Completed
         {
             string to = ToTXT.Text, from = FromTXT.Text;
 
-            LogsTXT.Text += "\nGetting Paths";
+            LogsTXT.AppendText("Getting Paths");
 
             var diSource = new DirectoryInfo(from);
             var diTarget = new DirectoryInfo(to);
 
-            LogsTXT.Text += "\nConverting Paths to Directory Info";
+            LogsTXT.AppendText("\nConverting Paths to Directory Info");
 
-            LogsTXT.Text += "\nStarting Backup ...";
+            LogsTXT.AppendText("\nStarting Backup ...");
 
             CopyAll(diSource, diTarget);
 
-            LogsTXT.Text += "\nBackup Finished";
+            LogsTXT.AppendText("\nBackup Finished");
         }
 
         private void driveFriendlyMethod() // Not Completed|Discontinued
@@ -109,5 +113,36 @@ namespace WorkBackSoftware
             }
         }
 
+        private void SaveSettingsBTN_Click(object sender, EventArgs e)
+        {
+
+            string[] linhas = new string[2];
+
+            linhas[0] = "to:" + ToTXT.Text;
+            linhas[1] = "from:" + FromTXT.Text;
+
+            System.IO.File.WriteAllLines(@"settings.wbs", linhas);
+
+            MessageBox.Show("Settings Were Saved!", "Settings", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void LoadSettings()
+        {
+            string[] lines = System.IO.File.ReadAllLines(@"settings.wbs");
+
+            for (int i = 0; i < lines.Length; i++)
+            {
+                string[] SeparateSettings = lines[i].Split(':');
+
+                if (i==0)
+                {
+                    ToTXT.Text = SeparateSettings[1];
+                }
+                else if(i == 1)
+                {
+                    FromTXT.Text = SeparateSettings[1];
+                }
+            }
+        }
     }
 }

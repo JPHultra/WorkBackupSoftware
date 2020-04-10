@@ -36,6 +36,7 @@
             this.FromTXT = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SyncBTN = new System.Windows.Forms.Button();
+            this.SaveSettingsBTN = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -106,11 +107,24 @@
             this.SyncBTN.UseVisualStyleBackColor = true;
             this.SyncBTN.Click += new System.EventHandler(this.button1_Click);
             // 
+            // SaveSettingsBTN
+            // 
+            this.SaveSettingsBTN.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.SaveSettingsBTN.Location = new System.Drawing.Point(19, 410);
+            this.SaveSettingsBTN.Name = "SaveSettingsBTN";
+            this.SaveSettingsBTN.Size = new System.Drawing.Size(247, 58);
+            this.SaveSettingsBTN.TabIndex = 7;
+            this.SaveSettingsBTN.Text = "Save Settings";
+            this.SaveSettingsBTN.UseVisualStyleBackColor = true;
+            this.SaveSettingsBTN.Click += new System.EventHandler(this.SaveSettingsBTN_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(285, 423);
+            this.ClientSize = new System.Drawing.Size(285, 488);
+            this.Controls.Add(this.SaveSettingsBTN);
             this.Controls.Add(this.SyncBTN);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.FromTXT);
@@ -135,6 +149,7 @@
         private System.Windows.Forms.TextBox FromTXT;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button SyncBTN;
+        private System.Windows.Forms.Button SaveSettingsBTN;
     }
 }
 
