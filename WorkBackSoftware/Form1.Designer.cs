@@ -129,6 +129,7 @@
             this.ToOpenBTN.TabIndex = 8;
             this.ToOpenBTN.Text = "Open";
             this.ToOpenBTN.UseVisualStyleBackColor = true;
+            this.ToOpenBTN.Click += new System.EventHandler(this.ToOpenBTN_Click);
             // 
             // FromOpenBTN
             // 
@@ -138,6 +139,7 @@
             this.FromOpenBTN.TabIndex = 9;
             this.FromOpenBTN.Text = "Open";
             this.FromOpenBTN.UseVisualStyleBackColor = true;
+            this.FromOpenBTN.Click += new System.EventHandler(this.FromOpenBTN_Click);
             // 
             // Form1
             // 

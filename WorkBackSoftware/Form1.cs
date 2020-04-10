@@ -177,5 +177,32 @@ namespace WorkBackSoftware
                 }
             }
         }
+
+        private void ToOpenBTN_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+
+                    ToTXT.Text = fbd.SelectedPath.ToString();
+                }
+            }
+        }
+
+        private void FromOpenBTN_Click(object sender, EventArgs e)
+        {
+            using (var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    FromTXT.Text = fbd.SelectedPath.ToString();
+                }
+            }
+        }
     }
 }
