@@ -13,6 +13,9 @@ namespace WorkBackSoftware
 {
     public partial class Form1 : Form
     {
+
+        //Not optimized for large file transfers
+
         public Form1()
         {
             InitializeComponent();
