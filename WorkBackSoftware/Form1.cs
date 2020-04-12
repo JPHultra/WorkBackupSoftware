@@ -50,34 +50,42 @@ namespace WorkBackSoftware
         {
             string to = ToTXT.Text, from = FromTXT.Text;
 
-            LogsTXT.AppendText("Getting Paths");
+            AddLog("Getting Paths");
 
             var diSource = new DirectoryInfo(from);
             var diTarget = new DirectoryInfo(to);
 
-            LogsTXT.AppendText("\nConverting Paths to Directory Info");
+            AddLog("Converting Paths to Directory Info");
 
-            LogsTXT.AppendText("\nStarting Backup ...");
+            AddLog("Starting Backup ...");
+
+            AddLog("");
 
             CopyAll(diSource, diTarget);
 
-            LogsTXT.AppendText("\nBackup Finished");
+            AddLog("");
+
+            AddLog("Backup Finished");
         }
 
         private void autoBackup(string to, string from) // Completed
         {
-            LogsTXT.AppendText("Getting Paths");
+            AddLog("Getting Paths");
 
             var diSource = new DirectoryInfo(from);
             var diTarget = new DirectoryInfo(to);
 
-            LogsTXT.AppendText("\nConverting Paths to Directory Info");
+            AddLog("Converting Paths to Directory Info");
 
-            LogsTXT.AppendText("\nStarting Backup ...");
+            AddLog("Starting Backup ...");
+
+            AddLog("");
 
             CopyAll(diSource, diTarget);
 
-            LogsTXT.AppendText("\nBackup Finished");
+            AddLog("");
+
+            AddLog("Backup Finished");
 
             Environment.Exit(0);
         }
@@ -121,16 +129,16 @@ namespace WorkBackSoftware
             return files;
         }
 
-        public static void CopyAll(DirectoryInfo source, DirectoryInfo target)
+        public void CopyAll(DirectoryInfo source, DirectoryInfo target)
         {
             try
             {
                 Directory.CreateDirectory(target.FullName);
-
+                
                 // Copy each file into the new directory.
                 foreach (FileInfo fi in source.GetFiles())
                 {
-                    Console.WriteLine(@"Copying {0}\{1}", target.FullName, fi.Name);
+                    AddLog("Copying " + target.FullName + @"\" + fi.Name);
                     fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
                 }
 
@@ -206,6 +214,12 @@ namespace WorkBackSoftware
                     FromTXT.Text = fbd.SelectedPath.ToString();
                 }
             }
+        }
+
+        private void AddLog(string text)
+        {
+            LogsTXT.AppendText(text);
+            LogsTXT.AppendText(Environment.NewLine);
         }
     }
 }
