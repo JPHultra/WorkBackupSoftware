@@ -14,12 +14,13 @@ namespace WorkBackSoftware
 {
     public partial class Form1 : Form
     {
-
-        //Not optimized for large file transfers
-
         public Form1()
         {
             InitializeComponent();
+            notifyIcon1.Text = "Work Backup Software";
+            notifyIcon1.Visible = false;
+            notifyIcon1.Icon = this.Icon;
+
             if (File.Exists(@"settings.wbs"))
             {
                 LoadSettings();
@@ -239,6 +240,24 @@ namespace WorkBackSoftware
         {
             LogsTXT.AppendText(text);
             LogsTXT.AppendText(Environment.NewLine);
+        }
+
+        private void notifyIcon1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            this.Show();
+            WindowState = FormWindowState.Normal;
+            notifyIcon1.Visible = false;
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+
+            if (WindowState == FormWindowState.Minimized)
+            {
+                this.Hide();
+                notifyIcon1.Visible = true;
+            }
+
         }
     }
 }
