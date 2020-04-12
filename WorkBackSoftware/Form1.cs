@@ -150,7 +150,7 @@ namespace WorkBackSoftware
                 // Copy each file into the new directory.
                 foreach (FileInfo fi in source.GetFiles())
                 {
-                    if (!File.Exists(target.ToString() + @"\" + fi.Name))
+                    if (!File.Exists(target.ToString() + @"\" + fi.Name) || (File.GetLastWriteTime(source.ToString() + @"\" + fi.Name) > File.GetLastWriteTime(target.ToString() + @"\" + fi.Name)))
                     {
                         AddLog("Copying " + target.FullName + @"\" + fi.Name);
                         fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
