@@ -21,6 +21,10 @@ namespace WorkBackSoftware
             notifyIcon1.Visible = false;
             notifyIcon1.Icon = this.Icon;
 
+            notifyIcon1.ContextMenuStrip = new ContextMenuStrip();
+            notifyIcon1.ContextMenuStrip.Items.Add("Start Backup", null, this.MenuBackup_Click);
+            notifyIcon1.ContextMenuStrip.Items.Add("Quit", null, this.MenuExit_Click);
+
             if (File.Exists(@"settings.wbs"))
             {
                 LoadSettings();
@@ -32,6 +36,16 @@ namespace WorkBackSoftware
             {
                 autoBackup(args[1], args[2]);
             }
+        }
+        
+        private void MenuBackup_Click(object sender, EventArgs e)
+        {
+            backup();
+        }
+
+        private void MenuExit_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private static readonly Stopwatch watch = new Stopwatch();
@@ -75,6 +89,14 @@ namespace WorkBackSoftware
             AddLog("Backup Finished");
 
             AddLog("Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s");
+
+            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+
+            notifyIcon1.BalloonTipText = "Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s";
+
+            notifyIcon1.BalloonTipTitle = "Backup Finished!";
+
+            notifyIcon1.ShowBalloonTip(5000);
 
             watch.Stop();
             watch.Reset();

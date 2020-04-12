@@ -69,6 +69,7 @@
             this.LogsTXT.Location = new System.Drawing.Point(19, 115);
             this.LogsTXT.Multiline = true;
             this.LogsTXT.Name = "LogsTXT";
+            this.LogsTXT.ReadOnly = true;
             this.LogsTXT.Size = new System.Drawing.Size(688, 207);
             this.LogsTXT.TabIndex = 2;
             // 
@@ -149,7 +150,6 @@
             // 
             this.notifyIcon1.Text = "notifyIcon1";
             this.notifyIcon1.Visible = true;
-            this.notifyIcon1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             this.notifyIcon1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon1_MouseDoubleClick);
             // 
             // Form1
