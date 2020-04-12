@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -32,6 +33,8 @@ namespace WorkBackSoftware
             }
         }
 
+        private static readonly Stopwatch watch = new Stopwatch();
+
         #region Useless_Events
         private void label1_Click(object sender, EventArgs e)
         {
@@ -48,6 +51,9 @@ namespace WorkBackSoftware
 
         private void backup() // Completed
         {
+            watch.Start();
+            LogsTXT.Text = "";
+
             string to = ToTXT.Text, from = FromTXT.Text;
 
             AddLog("Getting Paths");
@@ -66,10 +72,16 @@ namespace WorkBackSoftware
             AddLog("");
 
             AddLog("Backup Finished");
+
+            AddLog("Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s");
+
+            watch.Stop();
+            watch.Reset();
         }
 
         private void autoBackup(string to, string from) // Completed
         {
+
             AddLog("Getting Paths");
 
             var diSource = new DirectoryInfo(from);
@@ -138,8 +150,15 @@ namespace WorkBackSoftware
                 // Copy each file into the new directory.
                 foreach (FileInfo fi in source.GetFiles())
                 {
-                    AddLog("Copying " + target.FullName + @"\" + fi.Name);
-                    fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                    if (!File.Exists(target.ToString() + @"\" + fi.Name))
+                    {
+                        AddLog("Copying " + target.FullName + @"\" + fi.Name);
+                        fi.CopyTo(Path.Combine(target.FullName, fi.Name), true);
+                    }
+                    else
+                    {
+                        AddLog(target.FullName + @"\" + fi.Name + " Already exists. Skipping...");
+                    }
                 }
 
                 // Copy each subdirectory using recursion.

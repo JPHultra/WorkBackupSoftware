@@ -67,7 +67,7 @@
             this.LogsTXT.Location = new System.Drawing.Point(19, 115);
             this.LogsTXT.Multiline = true;
             this.LogsTXT.Name = "LogsTXT";
-            this.LogsTXT.Size = new System.Drawing.Size(323, 207);
+            this.LogsTXT.Size = new System.Drawing.Size(688, 207);
             this.LogsTXT.TabIndex = 2;
             // 
             // ToTXT
@@ -76,7 +76,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.ToTXT.Location = new System.Drawing.Point(58, 19);
             this.ToTXT.Name = "ToTXT";
-            this.ToTXT.Size = new System.Drawing.Size(196, 20);
+            this.ToTXT.Size = new System.Drawing.Size(561, 20);
             this.ToTXT.TabIndex = 3;
             // 
             // FromTXT
@@ -85,7 +85,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.FromTXT.Location = new System.Drawing.Point(58, 54);
             this.FromTXT.Name = "FromTXT";
-            this.FromTXT.Size = new System.Drawing.Size(196, 20);
+            this.FromTXT.Size = new System.Drawing.Size(561, 20);
             this.FromTXT.TabIndex = 4;
             // 
             // label3
@@ -103,7 +103,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SyncBTN.Location = new System.Drawing.Point(19, 346);
             this.SyncBTN.Name = "SyncBTN";
-            this.SyncBTN.Size = new System.Drawing.Size(323, 58);
+            this.SyncBTN.Size = new System.Drawing.Size(688, 58);
             this.SyncBTN.TabIndex = 6;
             this.SyncBTN.Text = "Synchronize";
             this.SyncBTN.UseVisualStyleBackColor = true;
@@ -115,7 +115,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SaveSettingsBTN.Location = new System.Drawing.Point(19, 410);
             this.SaveSettingsBTN.Name = "SaveSettingsBTN";
-            this.SaveSettingsBTN.Size = new System.Drawing.Size(323, 58);
+            this.SaveSettingsBTN.Size = new System.Drawing.Size(688, 58);
             this.SaveSettingsBTN.TabIndex = 7;
             this.SaveSettingsBTN.Text = "Save Settings";
             this.SaveSettingsBTN.UseVisualStyleBackColor = true;
@@ -123,7 +123,8 @@
             // 
             // ToOpenBTN
             // 
-            this.ToOpenBTN.Location = new System.Drawing.Point(267, 19);
+            this.ToOpenBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.ToOpenBTN.Location = new System.Drawing.Point(632, 19);
             this.ToOpenBTN.Name = "ToOpenBTN";
             this.ToOpenBTN.Size = new System.Drawing.Size(75, 20);
             this.ToOpenBTN.TabIndex = 8;
@@ -133,7 +134,8 @@
             // 
             // FromOpenBTN
             // 
-            this.FromOpenBTN.Location = new System.Drawing.Point(267, 54);
+            this.FromOpenBTN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.FromOpenBTN.Location = new System.Drawing.Point(632, 54);
             this.FromOpenBTN.Name = "FromOpenBTN";
             this.FromOpenBTN.Size = new System.Drawing.Size(75, 20);
             this.FromOpenBTN.TabIndex = 9;
@@ -145,7 +147,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 488);
+            this.ClientSize = new System.Drawing.Size(726, 488);
             this.Controls.Add(this.FromOpenBTN);
             this.Controls.Add(this.ToOpenBTN);
             this.Controls.Add(this.SaveSettingsBTN);
@@ -157,6 +159,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MaximumSize = new System.Drawing.Size(742, 527);
+            this.MinimumSize = new System.Drawing.Size(742, 527);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Work Backup Software";
