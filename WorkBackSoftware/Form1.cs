@@ -66,40 +66,47 @@ namespace WorkBackSoftware
 
         private void backup() // Completed
         {
-            watch.Start();
-            LogsTXT.Text = "";
+            try
+            {
+                watch.Start();
+                LogsTXT.Text = "";
 
-            string to = ToTXT.Text, from = FromTXT.Text;
+                string to = ToTXT.Text, from = FromTXT.Text;
 
-            AddLog("Getting Paths");
+                AddLog("Getting Paths");
 
-            var diSource = new DirectoryInfo(from);
-            var diTarget = new DirectoryInfo(to);
+                var diSource = new DirectoryInfo(from);
+                var diTarget = new DirectoryInfo(to);
 
-            AddLog("Converting Paths to Directory Info");
+                AddLog("Converting Paths to Directory Info");
 
-            AddLog("Starting Backup ...");
+                AddLog("Starting Backup ...");
 
-            AddLog("");
+                AddLog("");
 
-            CopyAll(diSource, diTarget);
+                CopyAll(diSource, diTarget);
 
-            AddLog("");
+                AddLog("");
 
-            AddLog("Backup Finished");
+                AddLog("Backup Finished");
 
-            AddLog("Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s");
+                AddLog("Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s");
 
-            notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
+                notifyIcon1.BalloonTipIcon = ToolTipIcon.Info;
 
-            notifyIcon1.BalloonTipText = "Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s";
+                notifyIcon1.BalloonTipText = "Time Elapsed: " + watch.Elapsed.Hours + "h:" + watch.Elapsed.Minutes + "m:" + watch.Elapsed.Seconds + "s";
 
-            notifyIcon1.BalloonTipTitle = "Backup Finished!";
+                notifyIcon1.BalloonTipTitle = "Backup Finished!";
 
-            notifyIcon1.ShowBalloonTip(5000);
+                notifyIcon1.ShowBalloonTip(5000);
 
-            watch.Stop();
-            watch.Reset();
+                watch.Stop();
+                watch.Reset();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Check if selected Path's are valid or for any typing errors!", "Critical Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void autoBackup(string to, string from) // Completed
